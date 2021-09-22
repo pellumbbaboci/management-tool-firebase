@@ -1,10 +1,26 @@
 import React from 'react';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import SignIn from './components/auth/SignIn';
+import SignUp from './components/auth/SignUp';
+import Dashboard from './components/dashboard/Dashboard';
+import ProjectCreate from './components/projects/ProjectCreate';
+import ProjectDetails from './components/projects/ProjectDetails';
 
 function App() {
   return (
-    <div className='App'>
-      <header className='bg-black text-white'>Bla bla</header>
-    </div>
+    <Router>
+      <div className='App'>
+        <header className='bg-black text-white'>Bla bla</header>
+        <Switch>
+          <Route exact path='/' component={Dashboard} />
+          <Route path='/dashboard' component={Dashboard} />
+          <Route path='/project/:id' component={ProjectDetails} />
+          <Route path='/create' component={ProjectCreate} />
+          <Route path='/signup' component={SignUp} />
+          <Route path='/signin' component={SignIn} />
+        </Switch>
+      </div>
+    </Router>
   );
 }
 
