@@ -2,8 +2,8 @@ import React from 'react';
 
 function Notifications() {
   return (
-    <div>
-      <h2>Notifications</h2>
+    <div className=''>
+      <h2 className=''>Notifications</h2>
     </div>
   );
 }
