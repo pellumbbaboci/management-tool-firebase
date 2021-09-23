@@ -1,7 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 function SignUp() {
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('');
+
+  const handleCreate = () => {
+    console.log(firstName, lastName, password, email);
+  };
+
   return (
     <div className='bg-gray-400 min-h-screen flex flex-col'>
       <div className='container max-w-sm mx-auto flex-1 flex flex-col items-center justify-center px-2'>
@@ -12,12 +21,18 @@ function SignUp() {
             className='block border border-grey-light w-full p-3 rounded mb-4'
             name='firstname'
             placeholder='First Name'
+            onChange={(e) => {
+              setFirstName(e.target.value);
+            }}
           />
           <input
             type='text'
             className='block border border-grey-light w-full p-3 rounded mb-4'
             name='lastname'
             placeholder='Last Name'
+            onChange={(e) => {
+              setLastName(e.target.value);
+            }}
           />
 
           <input
@@ -25,6 +40,9 @@ function SignUp() {
             className='block border border-grey-light w-full p-3 rounded mb-4'
             name='email'
             placeholder='Email'
+            onChange={(e) => {
+              setEmail(e.target.value);
+            }}
           />
 
           <input
@@ -32,11 +50,15 @@ function SignUp() {
             className='block border border-grey-light w-full p-3 rounded mb-4'
             name='password'
             placeholder='Password'
+            onChange={(e) => {
+              setPassword(e.target.value);
+            }}
           />
 
           <button
             type='submit'
             className='w-full text-center py-3 rounded bg-green-500 hover:bg-green-700 text-white hover:bg-green-dark focus:outline-none my-1'
+            onClick={handleCreate}
           >
             Create Account
           </button>
@@ -45,7 +67,7 @@ function SignUp() {
         <div className='text-grey-dark mt-6'>
           Already have an account?
           <Link
-            className='no-underline border-b border-blue text-blue-500 ml-3 text-lg'
+            className='no-underline border-b border-blue text-blue-200 font-semibold ml-3 text-lg'
             to='/login'
           >
             Log in

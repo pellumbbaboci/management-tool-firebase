@@ -4,7 +4,10 @@ import { NavLink } from 'react-router-dom';
 function SignedInLinks() {
   return (
     <div className='md:ml-auto'>
-      <NavLink to='/' className='text-white hover:bg-gray-500 p-3 rounded-md'>
+      <NavLink
+        to='/create'
+        className='text-white hover:bg-gray-500 p-3 rounded-md'
+      >
         New Project
       </NavLink>
       <NavLink to='/' className='text-white hover:bg-gray-500 p-3 rounded-md'>

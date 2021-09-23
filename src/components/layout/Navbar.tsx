@@ -14,7 +14,7 @@ function Navbar() {
           Management Tool{' '}
         </Link>
         <SignedInLinks />
-        {/* <SignedOutLinks /> */}
+        <SignedOutLinks />
       </div>
     </header>
   );
