@@ -4,13 +4,17 @@ import Notifications from './Notifications';
 
 function Dashboard() {
   return (
-    <div className='mx-auto px-20'>
-      <div className='grid grid-flow-col grid-cols-3 gap-4 mt-5'>
+    <div className='mx-auto px-20 bg-gray-400 min-h-screen flex flex-col'>
+      <div className='grid grid-flow-col grid-cols-3 gap-5 mt-5'>
         <div className='col-span-2'>
+          <h2 className='text-4xl px-5 mt-5 font-extrabold mb-4'>Projects</h2>
           <ProjectList />
         </div>
 
-        <div className='bg-gray-200 col-span-1'>
+        <div className='col-span-1'>
+          <h2 className='text-4xl px-5 mt-5 font-extrabold mb-4'>
+            Notifications
+          </h2>
           <Notifications />
         </div>
       </div>

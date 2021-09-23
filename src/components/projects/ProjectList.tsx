@@ -23,7 +23,7 @@ type ProjectCardType = {
 
 const ProjectCard = ({ title, author, createdAt }: ProjectCardType) => {
   return (
-    <div className='relative p-4 rounded-md shadow-lg  z-1 mx-4 hover:shadow-2xl'>
+    <div className='relative p-4 rounded-md shadow-lg  z-1 mx-4 hover:shadow-2xl bg-white'>
       {/* <h1 className='absolute -top-10 md:-left-10 md:-top-10 text-4xl text-white font-bold dark:text-gray-800'>
         {yearStart} - {yearEnd}
       </h1> */}
