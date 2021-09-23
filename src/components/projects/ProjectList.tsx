@@ -1,9 +1,16 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 function ProjectList() {
   return (
     <div className=''>
-      <ProjectCard author='Pellumb' title='Bla bla' createdAt='september 12' />
+      <Link to='/project/'>
+        <ProjectCard
+          author='Pellumb'
+          title='Bla bla'
+          createdAt='september 12'
+        />
+      </Link>
     </div>
   );
 }
