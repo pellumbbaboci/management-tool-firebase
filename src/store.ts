@@ -1,15 +1,5 @@
 import create from 'zustand'
-import {devtools, persist} from 'zustand/middleware'
-
-import { auth } from './config/fbConfig'
-
-// auth.onAuthStateChanged((user) => {
-//     if (user) {
-//       setCurrentUser(true);
-//     } else {
-//       setCurrentUser(false);
-//     }
-//   });
+import {devtools} from 'zustand/middleware'
 
 type State = {
     currentUser: boolean;
@@ -17,13 +7,10 @@ type State = {
   };
 
 
-const useCurrentUserStore = create<State>(devtools(persist((set) => ({
+const useCurrentUserStore = create<State>(devtools((set) => ({
     currentUser: false,
     setCurrentUser: (currentUser:boolean) => set(()=>({currentUser})),
-    }), {
-    name: "currUser-storage", // unique name
-    getStorage: () => sessionStorage, // (optional) by default the 'localStorage' is used
-  })))
+    })))
 
 export default useCurrentUserStore
 
