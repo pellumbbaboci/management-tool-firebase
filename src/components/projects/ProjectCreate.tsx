@@ -1,14 +1,11 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 
 function ProjectCreate() {
   const [title, setTitle] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [password, setPassword] = useState('');
-  const [email, setEmail] = useState('');
+  const [body, setBody] = useState('');
 
   const handleCreate = () => {
-    console.log(title, lastName, password, email);
+    console.log(title, body);
   };
   return (
     <div className='bg-gray-400 min-h-screen flex flex-col'>
@@ -29,7 +26,7 @@ function ProjectCreate() {
             name='lastname'
             placeholder='Enter Description'
             onChange={(e) => {
-              setLastName(e.target.value);
+              setBody(e.target.value);
             }}
           />
 

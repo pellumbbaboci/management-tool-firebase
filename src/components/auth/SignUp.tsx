@@ -1,15 +1,26 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+
+import { Link, useHistory } from 'react-router-dom';
+import { register, auth } from '../../config/fbConfig';
 
 function SignUp() {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
+  const history = useHistory();
+
+  const currentUser = auth.currentUser;
 
   const handleCreate = () => {
-    console.log(firstName, lastName, password, email);
+    register(firstName, lastName, email, password);
   };
+
+  useEffect(() => {
+    if (currentUser !== null) {
+      history.replace('/');
+    }
+  }, [currentUser, history]);
 
   return (
     <div className='bg-gray-400 min-h-screen flex flex-col'>

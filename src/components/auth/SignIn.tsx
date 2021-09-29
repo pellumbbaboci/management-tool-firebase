@@ -1,13 +1,23 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Link, useHistory } from 'react-router-dom';
+import { auth, signIn } from '../../config/fbConfig';
 
 function SignIn() {
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
+  const history = useHistory();
+
+  const currentUser = auth.currentUser;
 
   const handleSignin = () => {
-    console.log(password, email);
+    signIn(email, password);
   };
+
+  useEffect(() => {
+    if (currentUser) {
+      history.replace('/');
+    }
+  }, [currentUser, history]);
   return (
     <div className='bg-gray-400 min-h-screen flex flex-col'>
       <div className='container max-w-sm mx-auto flex-1 flex flex-col items-center justify-center px-2'>
