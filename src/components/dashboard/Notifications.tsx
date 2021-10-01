@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 
 function Notifications() {
   return (
@@ -12,7 +12,7 @@ function Notifications() {
 
       <p className='text-gray-600 my-2 '>{`Created at asdasd`}</p>
     </div>
-  );
+  )
 }
 
-export default Notifications;
+export default Notifications

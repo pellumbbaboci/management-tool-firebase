@@ -1,28 +1,36 @@
-import React, { useEffect, useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
-import { auth, signIn } from '../../config/fbConfig';
+import React, { useEffect, useState } from 'react'
+import { Link, useHistory } from 'react-router-dom'
+import { signIn } from '../../config/fbConfig'
+import { useCurrentUserStore, useSigninErrorStore } from '../../store'
 
 function SignIn() {
-  const [password, setPassword] = useState('');
-  const [email, setEmail] = useState('');
-  const history = useHistory();
+  const [password, setPassword] = useState('')
+  const [email, setEmail] = useState('')
+  const history = useHistory()
 
-  const currentUser = auth.currentUser;
+  const error = useSigninErrorStore((state) => state.error)
+  const currentUser = useCurrentUserStore((state) => state.currentUser)
 
   const handleSignin = () => {
-    signIn(email, password);
-  };
+    signIn(email, password)
+  }
+  console.log(currentUser)
 
   useEffect(() => {
-    if (currentUser) {
-      history.replace('/');
+    if (currentUser === 'login') {
+      history.replace('/')
     }
-  }, [currentUser, history]);
+  }, [currentUser, history])
   return (
     <div className='bg-gray-400 min-h-screen flex flex-col'>
       <div className='container max-w-sm mx-auto flex-1 flex flex-col items-center justify-center px-2'>
         <div className='bg-white px-6 py-8 rounded shadow-md text-black w-full'>
           <div className='mb-4'>
+            {error && (
+              <span className='rounded-sm shadow-sm bg-red-600 text-center text-white'>
+                {error}
+              </span>
+            )}
             <label className='block text-grey-darker text-sm font-bold mb-2'>
               Email
             </label>
@@ -32,7 +40,7 @@ function SignIn() {
               type='text'
               placeholder='Email'
               onChange={(e) => {
-                setEmail(e.target.value);
+                setEmail(e.target.value)
               }}
             />
           </div>
@@ -46,7 +54,7 @@ function SignIn() {
               type='password'
               placeholder='******************'
               onChange={(e) => {
-                setPassword(e.target.value);
+                setPassword(e.target.value)
               }}
             />
           </div>
@@ -72,7 +80,7 @@ function SignIn() {
         </div>
       </div>
     </div>
-  );
+  )
 }
 
-export default SignIn;
+export default SignIn

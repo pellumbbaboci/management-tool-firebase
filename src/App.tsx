@@ -1,11 +1,11 @@
-import React from 'react';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
-import SignIn from './components/auth/SignIn';
-import SignUp from './components/auth/SignUp';
-import Dashboard from './components/dashboard/Dashboard';
-import Navbar from './components/layout/Navbar';
-import ProjectCreate from './components/projects/ProjectCreate';
-import ProjectDetails from './components/projects/ProjectDetails';
+import React from 'react'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import SignIn from './components/auth/SignIn'
+import SignUp from './components/auth/SignUp'
+import Dashboard from './components/dashboard/Dashboard'
+import Navbar from './components/layout/Navbar'
+import ProjectCreate from './components/projects/ProjectCreate'
+import ProjectDetails from './components/projects/ProjectDetails'
 
 function App() {
   return (
@@ -22,7 +22,7 @@ function App() {
         </Switch>
       </div>
     </Router>
-  );
+  )
 }
 
-export default App;
+export default App

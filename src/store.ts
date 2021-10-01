@@ -2,15 +2,26 @@ import create from 'zustand'
 import {devtools} from 'zustand/middleware'
 
 type State = {
-    currentUser: boolean;
-    setCurrentUser: (currentUser: boolean) => void;
+    currentUser: string;
+    setCurrentUser: (currentUser: string) => void;
   };
+
+type ErrorState = {
+  error: string;
+  setError: (error: string) => void;
+};
 
 
 const useCurrentUserStore = create<State>(devtools((set) => ({
-    currentUser: false,
-    setCurrentUser: (currentUser:boolean) => set(()=>({currentUser})),
+    currentUser: '',
+    setCurrentUser: (currentUser:string) => set(()=>({currentUser})),
     })))
 
-export default useCurrentUserStore
+const useSigninErrorStore = create<ErrorState>(devtools((set) => ({
+  error: '',
+  setError: (error:string) => set(()=>({error})),
+  })))
+  
+
+export {useCurrentUserStore, useSigninErrorStore}
 

@@ -1,9 +1,11 @@
 import firebase from 'firebase/compat/app'
 import 'firebase/compat/firestore'
 import 'firebase/compat/auth'
+import 'firebase/compat/functions'
 
 import dotenv from 'dotenv'
 import path from 'path'
+
 
 dotenv.config({ path: path.resolve(__dirname, '../.env') })
 
@@ -21,6 +23,10 @@ const firebaseApp = firebase.initializeApp(config);
 const db = firebase.firestore(firebaseApp)
 const auth = firebase.auth(firebaseApp)
 
+// auth.onAuthStateChanged(user => {
+//   console.log(user, 'auth')
+// })
+ 
 const register = async (firstname:string, lastname:string, email:string, password:string) => {
   try {
     const res = await auth.createUserWithEmailAndPassword(email,password)
@@ -29,17 +35,17 @@ const register = async (firstname:string, lastname:string, email:string, passwor
 
     if(res.user){
      
-    await res.user.updateProfile({
-      displayName:`${firstname} ${lastname}`
-    })
+      await res.user.updateProfile({
+        displayName:`${firstname} ${lastname}`
+      })
 
-    const docRef = await db.collection('users').doc(res.user.uid).set({
-        email:res.user.email,
-        firstname:firstname,
-        lastname:lastname
-    }) 
+      // const docRef = await db.collection('users').doc(res.user.uid).set({
+      //     email:res.user.email,
+      //     firstname:firstname,
+      //     lastname:lastname
+      // }) 
 
-      console.log("Document user written with ", docRef);
+      // console.log("Document user written with ", docRef);
 
     }
   } catch (error) {
@@ -51,7 +57,9 @@ const register = async (firstname:string, lastname:string, email:string, passwor
   }
 };
 
+
 const signIn = async (email:string, password:string) => {
+
   try {
     const res = await auth.signInWithEmailAndPassword(email,password)
     console.log(res)
@@ -78,7 +86,9 @@ const logout = async () => {
     
 };
 
+
 export {
+  firebase,
   db,
   auth,
   register,
