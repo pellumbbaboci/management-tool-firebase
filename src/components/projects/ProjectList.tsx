@@ -37,6 +37,7 @@ function ProjectList() {
 
   useEffect(() => {
     readData()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (

@@ -33,12 +33,6 @@ function ProjectCreate() {
     }
   }
 
-  // useEffect(() => {
-  //   if (!error) {
-  //     history.replace('/');
-  //   }
-  // }, [error, history]);
-
   return (
     <div className='bg-gray-400 min-h-screen flex flex-col'>
       <div className='container max-w-screen-md mx-auto flex-1 flex flex-col items-center justify-center px-2'>
