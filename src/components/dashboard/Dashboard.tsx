@@ -1,6 +1,6 @@
-import React from 'react';
-import ProjectList from '../projects/ProjectList';
-import Notifications from './Notifications';
+import React from 'react'
+import ProjectList from '../projects/ProjectList'
+import Notifications from './Notifications'
 
 function Dashboard() {
   return (
@@ -19,7 +19,7 @@ function Dashboard() {
         </div>
       </div>
     </div>
-  );
+  )
 }
 
-export default Dashboard;
+export default Dashboard

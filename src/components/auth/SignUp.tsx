@@ -1,26 +1,26 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react'
 
-import { Link, useHistory } from 'react-router-dom';
-import { register, auth } from '../../config/fbConfig';
+import { Link, useHistory } from 'react-router-dom'
+import { register, auth } from '../../config/fbConfig'
 
 function SignUp() {
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [password, setPassword] = useState('');
-  const [email, setEmail] = useState('');
-  const history = useHistory();
+  const [firstName, setFirstName] = useState('')
+  const [lastName, setLastName] = useState('')
+  const [password, setPassword] = useState('')
+  const [email, setEmail] = useState('')
+  const history = useHistory()
 
-  const currentUser = auth.currentUser;
+  const currentUser = auth.currentUser
 
   const handleCreate = () => {
-    register(firstName, lastName, email, password);
-  };
+    register(firstName, lastName, email, password)
+  }
 
   useEffect(() => {
     if (currentUser !== null) {
-      history.replace('/');
+      history.replace('/')
     }
-  }, [currentUser, history]);
+  }, [currentUser, history])
 
   return (
     <div className='bg-gray-400 min-h-screen flex flex-col'>
@@ -33,7 +33,7 @@ function SignUp() {
             name='firstname'
             placeholder='First Name'
             onChange={(e) => {
-              setFirstName(e.target.value);
+              setFirstName(e.target.value)
             }}
           />
           <input
@@ -42,7 +42,7 @@ function SignUp() {
             name='lastname'
             placeholder='Last Name'
             onChange={(e) => {
-              setLastName(e.target.value);
+              setLastName(e.target.value)
             }}
           />
 
@@ -52,7 +52,7 @@ function SignUp() {
             name='email'
             placeholder='Email'
             onChange={(e) => {
-              setEmail(e.target.value);
+              setEmail(e.target.value)
             }}
           />
 
@@ -62,7 +62,7 @@ function SignUp() {
             name='password'
             placeholder='Password'
             onChange={(e) => {
-              setPassword(e.target.value);
+              setPassword(e.target.value)
             }}
           />
 
@@ -87,7 +87,7 @@ function SignUp() {
         </div>
       </div>
     </div>
-  );
+  )
 }
 
-export default SignUp;
+export default SignUp

@@ -1,20 +1,20 @@
-import React, { useEffect } from 'react';
-import { NavLink, useHistory } from 'react-router-dom';
-import { auth, logout } from '../../config/fbConfig';
+import React, { useEffect } from 'react'
+import { NavLink, useHistory } from 'react-router-dom'
+import { auth, logout } from '../../config/fbConfig'
 
 function SignedInLinks() {
-  const currUser = auth.currentUser;
-  console.log(currUser?.displayName);
+  const currUser = auth.currentUser
+  console.log(currUser?.displayName)
 
-  const history = useHistory();
+  const history = useHistory()
 
   const handleSignOut = () => {
-    logout();
-  };
+    logout()
+  }
 
   useEffect(() => {
-    history.replace('/');
-  }, [currUser, history]);
+    history.replace('/')
+  }, [currUser, history])
   return (
     <div className='md:ml-auto'>
       <NavLink
@@ -39,7 +39,7 @@ function SignedInLinks() {
           .slice(0, 1)}${currUser?.displayName?.split(' ')[1].slice(0, 1)}`}
       </NavLink>
     </div>
-  );
+  )
 }
 
-export default SignedInLinks;
+export default SignedInLinks

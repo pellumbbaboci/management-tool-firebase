@@ -1,16 +1,16 @@
-import React from 'react';
+import React from 'react'
 
 interface propsType {
   match: {
     params: {
-      id: string;
-    };
-  };
+      id: string
+    }
+  }
 }
 
 function ProjectDetails({ match }: propsType) {
-  const id = match.params.id;
-  const handleDelete = () => {};
+  const id = match.params.id
+  const handleDelete = () => {}
 
   return (
     <div className='px-20'>
@@ -44,7 +44,7 @@ function ProjectDetails({ match }: propsType) {
         </article>
       </div>
     </div>
-  );
+  )
 }
 
-export default ProjectDetails;
+export default ProjectDetails

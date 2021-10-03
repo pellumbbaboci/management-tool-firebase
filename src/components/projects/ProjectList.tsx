@@ -31,12 +31,13 @@ function ProjectList() {
       setData(saveProject)
     })
     console.log(data)
-
-    console.log(data)
   }
 
   useEffect(() => {
     readData()
+    return () => {
+      setData([])
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
