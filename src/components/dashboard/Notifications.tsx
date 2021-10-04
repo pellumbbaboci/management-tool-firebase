@@ -12,7 +12,7 @@ function Notifications() {
   const [data, setData] = useState<notificationType>([])
 
   const readData = async () => {
-    const res = db.collection('notifications')
+    const res = db.collection('notifications').orderBy('time', 'desc')
 
     res.onSnapshot((querySnapshot) => {
       const saveNotification: notificationType = []
@@ -41,7 +41,10 @@ function Notifications() {
   return (
     <div className='py-10 rounded-lg bg-gray-50 px-10'>
       {data?.map((notification) => (
-        <div className='mx-auto' key={notification.id}>
+        <div
+          className='mx-auto  border-b-2 mb-2 hover:shadow-lg p-4'
+          key={notification.id}
+        >
           {/* <h1 className='absolute -top-10 md:-left-10 md:-top-10 text-4xl text-white font-bold dark:text-gray-800'>
       {yearStart} - {yearEnd}
     </h1> */}
@@ -51,7 +54,7 @@ function Notifications() {
 
           <p className='text-gray-600 my-2'>{`Posted by ${notification.user}`}</p>
 
-          <p className='text-gray-600 my-2 '>{`Created on ${notification.time}`}</p>
+          <p className='text-gray-600 my-2'>{`Created on ${notification.time}`}</p>
         </div>
       ))}
     </div>
