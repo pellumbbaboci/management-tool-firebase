@@ -39,16 +39,13 @@ function Notifications() {
   }, [])
 
   return (
-    <div className='bg-gray-700 p-3 rounded-lg'>
+    <div className='py-10 rounded-lg bg-gray-50 px-10'>
       {data?.map((notification) => (
-        <div
-          className='relative p-4 rounded-md shadow-lg  z-1 mx-4 hover:shadow-2xl bg-white mb-5'
-          key={notification.id}
-        >
+        <div className='mx-auto' key={notification.id}>
           {/* <h1 className='absolute -top-10 md:-left-10 md:-top-10 text-4xl text-white font-bold dark:text-gray-800'>
       {yearStart} - {yearEnd}
     </h1> */}
-          <h1 className='font-serif text-black text-3xl mb-5'>
+          <h1 className='font-serif text-red-500 text-3xl mb-5'>
             {notification.content}
           </h1>
 
