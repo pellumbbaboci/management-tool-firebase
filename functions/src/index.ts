@@ -123,7 +123,10 @@ export const likeProject = functions.https.onCall(async (data, context) => {
 
   try {
     const doc = await userDoc.get()
-    if (doc.data()?.projetcsLiked.includes(data.id)) {
+    if (
+      doc.data()?.projectsLiked &&
+      doc.data()?.projectsLiked.includes(data.id)
+    ) {
       throw new functions.https.HttpsError(
         'failed-precondition',
         'You already liked this'
