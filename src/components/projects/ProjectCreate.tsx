@@ -19,6 +19,7 @@ function ProjectCreate() {
         body: body,
         authorFirstName: userFirstName!,
         authorLastName: userLastName!,
+        likesCount: 0,
       })
       setError('')
       setBody('')
