@@ -60,7 +60,7 @@ export const newUserSignUpCreateNotification = functions.auth
     // const userId = user.uid
     const notification = {
       content: 'New User just sign up',
-      user: `${user.displayName}`,
+      user: `${user.email}`,
       time: admin.firestore.FieldValue.serverTimestamp(),
     }
 
