@@ -14,6 +14,7 @@ type projectType = {
 function ProjectList() {
   const [data, setData] = useState<projectType>([])
   const [errorLike, setErrorLike] = useState('')
+  console.log(errorLike)
 
   const readData = async () => {
     const res = db.collection('projects')

@@ -38,9 +38,17 @@ const register = async (
     console.log('auth user created', userId)
 
     if (res.user) {
-      await res.user.updateProfile({
-        displayName: `${firstname} ${lastname}`,
-      })
+      return await firebase
+        .firestore()
+        .collection('users')
+        .doc(userId)
+        .set({
+          firstName: firstname,
+          lastName: lastname,
+          initials: firstname[0] + lastname[0],
+          email: email,
+          projectsLiked: [],
+        })
 
       // const docRef = await db.collection('users').doc(res.user.uid).set({
       //     email:res.user.email,

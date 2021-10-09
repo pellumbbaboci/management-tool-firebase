@@ -2,22 +2,50 @@ import React, { useEffect } from 'react'
 import SignedInLinks from './SignedInLinks'
 import SignedOutLinks from './SignedOutLinks'
 import { Link } from 'react-router-dom'
-import { auth } from '../../config/fbConfig'
-import { useCurrentUserStore } from '../../store'
+import { auth, firebase } from '../../config/fbConfig'
+import { useCurrentUserStore, useCurrentUserProfileStore } from '../../store'
 
 function Navbar() {
   const setCurrentUser = useCurrentUserStore((state) => state.setCurrentUser)
   const currentUser = useCurrentUserStore((state) => state.currentUser)
 
+  const setCurrentUserProfile = useCurrentUserProfileStore(
+    (state) => state.setCurrentUserProfile
+  )
+  const currentUserProfile = useCurrentUserProfileStore(
+    (state) => state.currentUserProfile
+  )
+  console.log(currentUserProfile)
+
+  const setUserProfile = async (id: string) => {
+    try {
+      console.log(currentUser, 'curruser')
+      const res = await firebase.firestore().collection('users').doc(id).get()
+
+      if (res.exists) {
+        res.data()
+        console.log(res.data())
+        setCurrentUserProfile({
+          firstName: res.data()?.firstName,
+          lastName: res.data()?.lastName,
+          initials: res.data()?.initials,
+        })
+      }
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
       if (user) {
         setCurrentUser('login')
+        setUserProfile(user.uid)
       } else {
         setCurrentUser('logout')
       }
     })
-  })
+  }, [])
 
   console.log(currentUser, 'sdfsd')
   return (
@@ -29,7 +57,7 @@ function Navbar() {
         >
           Management Tool{' '}
         </Link>
-        {currentUser === 'login' ? (
+        {currentUser === 'login' && currentUserProfile.initials !== '' ? (
           <SignedInLinks />
         ) : currentUser === 'logout' ? (
           <SignedOutLinks />

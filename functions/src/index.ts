@@ -49,41 +49,41 @@ export const userDeleted = functions.auth.user().onDelete((user) => {
   return deleteUser(user.uid)
 })
 
-export const newUserSignUpCreateNotification = functions.auth
-  .user()
+export const newUserSignUpFirestoreCreateNotification = functions.firestore
+  .document('users/{userId}')
   .onCreate((user) => {
-    admin.firestore().collection('users').doc(user.uid).set({
-      email: user.email,
-      projectsLiked: [],
-    })
-
+    // admin.firestore().collection('users').doc(user.uid).set({
+    //   email: user.email,
+    //   projectsLiked: [],
+    // })
+    const data = user.data()
     // const userId = user.uid
     const notification = {
       content: 'New User just sign up',
-      user: `${user.email}`,
+      user: `${data.firstName} ${data.lastName}`,
       time: admin.firestore.FieldValue.serverTimestamp(),
     }
 
     return createNotification(notification)
   })
 
-const createUser = async (userId: string, userEmail: string) => {
-  try {
-    const docRef = await admin.firestore().collection('users').doc(userId).set({
-      email: userEmail,
-      projectsLiked: [],
-    })
-    console.log('Notification Created ', docRef)
-  } catch (error) {
-    console.log(error)
-  }
-}
+// const createUser = async (userId: string, userEmail: string) => {
+//   try {
+//     const docRef = await admin.firestore().collection('users').doc(userId).set({
+//       email: userEmail,
+//       projectsLiked: [],
+//     })
+//     console.log('Notification Created ', docRef)
+//   } catch (error) {
+//     console.log(error)
+//   }
+// }
 
-export const newUserSignUpCreateUserCollection = functions.auth
-  .user()
-  .onCreate((user) => {
-    return createUser(user.uid, user.email!)
-  })
+// export const newUserSignUpCreateUserCollection = functions.auth
+//   .user()
+//   .onCreate((user) => {
+//     return createUser(user.uid, user.email!)
+//   })
 
 export const addProject = functions.https.onCall((data, context) => {
   if (!context.auth) {

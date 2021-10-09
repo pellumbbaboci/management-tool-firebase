@@ -1,10 +1,29 @@
 import React, { useEffect } from 'react'
 import { NavLink, useHistory } from 'react-router-dom'
 import { auth, logout } from '../../config/fbConfig'
+import { useCurrentUserProfileStore } from '../../store'
 
 function SignedInLinks() {
+  const currentUserProfile = useCurrentUserProfileStore(
+    (state) => state.currentUserProfile
+  )
   const currUser = auth.currentUser
-  console.log(currUser?.displayName)
+  console.log(currUser)
+  console.log(currentUserProfile)
+
+  // const readUserProfile = async () => {
+  //   const res = await db.collection('projects').doc(currUser?.uid).get()
+
+  //   if (res.exists) {
+  //     res.data()
+  //     console.log(res.data())
+  //     setCurrentUserProfile({
+  //       firstName: res.data()?.firstName,
+  //       lastName: res.data()?.lastName,
+  //       initials: res.data()?.initials,
+  //     })
+  //   }
+  // }
 
   const history = useHistory()
 
@@ -34,9 +53,10 @@ function SignedInLinks() {
         to='/'
         className='rounded-full h-8 w-8 items-center justify-center bg-gray-400 ml-4 p-2'
       >
-        {`${currUser?.displayName
+        {/* {`${currUser?.displayName
           ?.split(' ')[0]
-          .slice(0, 1)}${currUser?.displayName?.split(' ')[1].slice(0, 1)}`}
+          .slice(0, 1)}${currUser?.displayName?.split(' ')[1].slice(0, 1)}`} */}
+        {currentUserProfile.initials}
       </NavLink>
     </div>
   )
