@@ -2,14 +2,16 @@ import React, { useState } from 'react'
 import { auth } from '../../config/fbConfig'
 import { firebase } from '../../config/fbConfig'
 import { useHistory } from 'react-router-dom'
+import { useCurrentUserProfileStore } from '../../store'
 
 function ProjectCreate() {
   const [title, setTitle] = useState('')
   const [body, setBody] = useState('')
   const [error, setError] = useState('')
   const history = useHistory()
-  const userFirstName = auth.currentUser?.displayName?.split(' ')[0]
-  const userLastName = auth.currentUser?.displayName?.split(' ')[1]
+  const currentUserProfile = useCurrentUserProfileStore(
+    (state) => state.currentUserProfile
+  )
 
   const handleCreate = async () => {
     const addingProject = firebase.functions().httpsCallable('addProject')
@@ -17,8 +19,8 @@ function ProjectCreate() {
       await addingProject({
         title: title,
         body: body,
-        authorFirstName: userFirstName!,
-        authorLastName: userLastName!,
+        authorFirstName: currentUserProfile.firstName,
+        authorLastName: currentUserProfile.lastName,
         likesCount: 0,
       })
       setError('')

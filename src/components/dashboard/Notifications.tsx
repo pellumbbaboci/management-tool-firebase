@@ -39,7 +39,7 @@ function Notifications() {
   }, [])
 
   return (
-    <div className='py-10 rounded-lg bg-gray-50 px-10'>
+    <div className='rounded-lg bg-gray-50 px-10 '>
       {data?.map((notification) => (
         <div
           className='mx-auto  border-b-2 mb-2 hover:shadow-lg p-4'
