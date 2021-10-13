@@ -4,6 +4,7 @@ import SignIn from './components/auth/SignIn'
 import SignUp from './components/auth/SignUp'
 import Dashboard from './components/dashboard/Dashboard'
 import Navbar from './components/layout/Navbar'
+import { NotFound } from './components/NotFound'
 import ProjectCreate from './components/projects/ProjectCreate'
 import ProjectDetails from './components/projects/ProjectDetails'
 
@@ -19,6 +20,7 @@ function App() {
           <Route path='/create' component={ProjectCreate} />
           <Route path='/signup' component={SignUp} />
           <Route path='/signin' component={SignIn} />
+          <Route component={NotFound} />
         </Switch>
       </div>
     </Router>
