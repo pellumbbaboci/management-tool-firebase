@@ -79,7 +79,7 @@ function SignUp() {
           Already have an account?
           <Link
             className='no-underline border-b border-blue text-blue-200 font-semibold ml-3 text-lg'
-            to='/login'
+            to='/signin'
           >
             Log in
           </Link>
