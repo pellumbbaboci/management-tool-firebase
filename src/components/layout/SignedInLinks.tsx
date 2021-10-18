@@ -29,6 +29,7 @@ function SignedInLinks() {
 
   const handleSignOut = () => {
     logout()
+    history.push('/')
   }
 
   useEffect(() => {
